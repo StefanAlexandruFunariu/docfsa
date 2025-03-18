@@ -1,109 +1,149 @@
-# docfsa
+# 🏫 School Management System – Web-Based Academic DMS
 
-## Document Management System (DMS) for Academic Institutions
-
-## Overview
-
-This project is a **Document Management System (DMS)** developed specifically for the needs of an academic institution, tailored to streamline the management of documents such as student records, administrative paperwork, and academic files. It was initially built for my former university, where I identified inefficiencies in how documents were stored, accessed, and managed. The system provides a centralized platform for managing documents, improving productivity and reducing errors.
-
-## Features
-
-- **User Roles and Permissions:**
-  - Admins can manage users and oversee all documents.
-  - Faculty can upload, access, and organize academic documents.
-  - Students can access specific documents shared with them.
-- **Academic Year Management:**
-  - A dedicated `academic_years` table in the database manages academic years (e.g., "2018-2019"), along with their statuses and metadata.
-- **Document Categorization:**
-  - Organize files by categories, such as coursework, administrative, or research documents.
-- **Search Functionality:**
-  - Quickly find documents using keywords, tags, or metadata.
-- **Version Control:**
-  - Track changes to documents and maintain version history.
-- **Secure Access:**
-  - Implements authentication and role-based access control (RBAC).
-- **Notifications:**
-  - Users are notified of new document uploads or updates relevant to them.
-
-## Technologies Used
-
-- **Backend:** Developed with PHP.
-- **Database:** MariaDB for document storage and metadata (SQL dump provided).
-- **Web Server:** Apache (configuration managed via `.htaccess`).
-- **Frontend:** Utilizes PHP templates for dynamic content rendering.
-
-## How It Works
-
-1. **User Login:**
-   - Users log in with their credentials, and access is granted based on their role.
-2. **Dashboard:**
-   - Users are presented with a personalized dashboard displaying their recent documents and tasks.
-3. **Document Management:**
-   - Documents can be uploaded, categorized, and shared based on user roles.
-4. **Academic Year Management:**
-   - Administrators can configure and manage academic years through the `academic_years` table.
-5. **Search and Access:**
-   - Users can search for specific documents using advanced filters.
-6. **Notifications:**
-   - Email or in-app notifications keep users informed about changes or additions.
-
-## Installation and Setup
-
-1. Clone the repository from GitHub:
-   ```bash
-   git clone https://github.com/username/document-management-system.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd document-management-system
-   ```
-3. Set up the database:
-   - Import the provided SQL file into your MariaDB instance:
-     ```sql
-     source docfsa.sql;
-     ```
-   - Update the database connection details in the PHP configuration file.
-4. Configure your web server:
-   - Ensure Apache is set up to handle `.htaccess` files.
-5. Start the application:
-   ```bash
-   php -S localhost:8000
-   ```
-6. Access the application at `http://localhost:8000` (or appropriate port).
-
-## Database Structure
-
-One of the key tables, `academic_years`, manages academic years efficiently:
-
-| Column        | Type         | Description                                     |
-|---------------|--------------|-------------------------------------------------|
-| `id`          | INT          | Primary key.                                   |
-| `session_year`| VARCHAR      | Academic year range (e.g., "2018-2019").      |
-| `start_year`  | YEAR         | Start year.                                    |
-| `end_year`    | YEAR         | End year.                                      |
-| `is_running`  | TINYINT      | Indicates if the academic year is active.      |
-| `created_at`  | TIMESTAMP    | Timestamp of record creation.                  |
-| `modified_at` | TIMESTAMP    | Timestamp of last modification.                |
-
-## Why This Project Matters
-
-This system was developed to address real-world challenges faced by academic institutions in managing documents efficiently. By automating repetitive tasks, providing secure access, and ensuring document traceability, it significantly reduces administrative workload and enhances productivity.
-
-## Future Improvements
-
-- Integration with third-party tools (e.g., Google Drive, OneDrive).
-- Advanced analytics for document usage.
-- Support for multi-language interfaces.
-- Mobile app development for on-the-go access.
-
-## Contact
-
-If you have questions or would like to collaborate on this project, feel free to reach out:
-
-- **Email:** [alexfunariu01@gmail.com]
-- **LinkedIn:** [https://www.linkedin.com/in/stefan-alexandru-funariu/]
+![PHP](https://img.shields.io/badge/PHP-7.x-blue)
+![Database](https://img.shields.io/badge/Database-MariaDB-lightblue)
+![Status](https://img.shields.io/badge/Project-Finished-success)
+![Updated](https://img.shields.io/badge/Last%20Updated-Mar%202024-orange)
 
 ---
 
-Feel free to explore the codebase, and thank you for your interest in this project!
+## 📌 Project Overview
 
+This project is a **Document Management System (DMS)** designed to streamline the operations of academic institutions. It focuses on managing academic years, storing documents, and providing role-based access for faculty, students, and administrators.
+
+The system was built for a real-world academic need and simplifies document workflows, improves access to information, and provides a clean user interface for day-to-day school operations.
+
+---
+
+## 🎯 Objectives
+
+- Centralize document management for academic institutions
+- Provide secure access for admins, faculty, and students
+- Track academic years, files, and user interactions
+- Replace inefficient paper-based systems
+
+---
+
+## ✨ Features
+
+### ✅ User Roles & Authentication
+- Admins, Faculty, and Students with separate permissions
+- Custom dashboards based on user role
+
+### ✅ Document Management
+- Upload and organize academic and administrative documents
+- Integrated **WYSIWYG editor** (jQuery-TE) for formatting
+- Support for inline **PDF previews** via PDF.js
+
+### ✅ Academic Year Tracking
+- Dedicated SQL structure for academic sessions (e.g. 2021–2022)
+- Toggle status of each year (active/inactive)
+
+### ✅ UI Components
+- Date picker, color picker, and clean visual interface
+- Responsive layout built using modular asset structure
+
+---
+
+## 🛠️ Technologies Used
+
+- **Backend:** PHP 7.x
+- **Database:** MariaDB / MySQL
+- **Frontend:** HTML5, CSS3, JavaScript
+- **Libraries:**
+  - jQuery
+  - jQuery-TE (editor)
+  - PDF.js
+  - DatePicker
+  - ColorPicker
+- **Server:** Apache (supports `.htaccess`)
+
+---
+
+## 📂 Project Structure
+
+```
+school-management-system/
+├── .htaccess                            # Server config
+├── default.php                          # Main entry point
+├── school_management_system.sql         # Database schema
+├── assets/
+│   └── vendors/
+│       ├── editor/                      # jQuery-TE WYSIWYG
+│       ├── pdfjs/                       # PDF preview
+│       ├── datepicker/                 # Calendar input
+│       └── colorpicker/                # Color theme selector
+```
+
+---
+
+## 🧪 How It Works
+
+1. **Users log in** using their assigned role credentials
+2. **Dashboard shows** role-specific views and actions
+3. **Documents can be added**, categorized, and searched
+4. **Admins manage** academic years and configure platform settings
+
+---
+
+## ⚙️ Installation
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/school-management-system.git
+   ```
+
+2. Import the SQL database:
+   ```sql
+   source school_management_system.sql;
+   ```
+
+3. Configure your PHP DB connection:
+   - Edit credentials in `default.php` or your config file
+
+4. Serve locally:
+   ```bash
+   php -S localhost:8000
+   ```
+
+5. Or use Apache and access via:
+   ```
+   http://localhost/school-management-system/
+   ```
+
+---
+
+## 🧱 Database Highlight: `academic_years`
+
+| Column         | Type      | Description                        |
+|----------------|-----------|------------------------------------|
+| `id`           | INT       | Primary Key                        |
+| `session_year` | VARCHAR   | Academic Year (e.g. 2021–2022)     |
+| `start_year`   | YEAR      | Session Start                      |
+| `end_year`     | YEAR      | Session End                        |
+| `is_running`   | TINYINT   | 1 = Active, 0 = Inactive           |
+| `created_at`   | TIMESTAMP | Creation Time                      |
+| `modified_at`  | TIMESTAMP | Last Update                        |
+
+---
+
+## 🔮 Future Improvements
+
+- Add user registration with email verification
+- Document version control and rollback
+- Mobile-friendly UI and dashboard charts
+- Third-party integrations (e.g. Google Drive, Firebase)
+- Analytics module for admin usage
+
+---
+
+## 👤 Author
+
+**Stefan Alexandru Funariu**  
+📧 [alexfunariu01@gmail.com](mailto:alexfunariu01@gmail.com)  
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/stefan-alexandru-funariu/)  
+💻 [GitHub Portfolio](https://github.com/stefanf02)
+
+---
+
+> Built for academic impact and real-world efficiency 🎓
